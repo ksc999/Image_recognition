@@ -1,0 +1,35 @@
+本文来源于下面的网站，本人觉得很好用，所以分享出来。
+://www.ilovematlab.cn/thread-27994-1-1.html
+首先使用正常的imread函数，把你的图片读到工作空间里：
+
+I=imread('你的图片地址放在这里')；
+
+
+
+
+  % 画一条直线
+  x=rand(1,10)*50+50; y=linspace(1,512,10);
+  I=bitmapplot(x,y,I);
+
+  % 画一条粗的红线
+  x=rand(1,10)*50+100; y=linspace(1,256,10);
+  I=bitmapplot(x,y,I,struct('LineWidth',5,'Color',[1 0 0 1]));
+
+  % 画一条带有标记的红线
+  x=rand(1,10)*50+150; y=linspace(1,256,10);
+  I=bitmapplot(x,y,I,struct('Marker','*','MarkerColor',[1 0 1 1],'Color',[1 1 0 1]));
+
+  % 加一个多边形
+  x=[1 100 30 100]+200; y=[30 1 250 200];
+  I=bitmapplot(x,y,I,struct('FillColor',[0 1 0 0.5],'Color',[1 1 0 1]));
+
+  % 加一个置顶多边形
+  x=[30 80 70 120]+200; y=[30 1 250 200];
+  I=bitmapplot(x,y,I,struct('FillColor',[1 0 0 0.5],'Color',[1 0 0 1]));
+
+  lines={'Plot Test,','BitmapPlot version 1.2'};
+  % 在图片上写字
+  I=bitmaptext(lines,I,[1 1],struct('Color',[1 1 1 1]));
+  
+  % 显示你的图片
+  figure, imshow(I);
