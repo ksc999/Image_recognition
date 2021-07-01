@@ -97,11 +97,7 @@ I = I.hall_gray;
 
 % No.8
 Z_q = quantify(I, Q);
-figure(1);
-subplot(2,1,1);
-imshow(I);
-title('before encode');
-set(gca, 'FontSize', 12);
+imshow(Z_q(2:);
 
 % No.9
 [DC_stream, AC_stream] = encode(Z_q, DC, AC);
@@ -109,9 +105,8 @@ set(gca, 'FontSize', 12);
 save('jpegcodes.mat', 'I_H', 'I_W', 'DC_stream', 'AC_stream');
 
 % No.10
-I_recoverd = decode('jpegcodes.mat', Q, DC, AC);
-% I = reshape(I, 63,315);
-subplot(2,1,2);
-imshow(I_recoverd);
-title('after decode');
-set(gca, 'FontSize', 12);
+I = decode('jpegcodes.mat', Q, DC, AC);
+I = reshape(I, 315, 63);
+I = I';
+imshow(I);
+
