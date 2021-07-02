@@ -82,7 +82,7 @@ function AC_decode_array = AC_decode(AC_stream, AC)
 
         % get run, size and data itself
         if flag % EOB condition or 16-zeros condition
-            if isequal(AC_stream(index: index + 10), [1,1,1,1,1,1,1,1,0,0,1])
+            if index + 10 <= length(AC_stream) && isequal(AC_stream(index: index + 10), [1,1,1,1,1,1,1,1,0,0,1])
                 % 16-zeros
                 zeros_filled = zeros(1, 16);
                 tmp_array = [tmp_array, zeros_filled];

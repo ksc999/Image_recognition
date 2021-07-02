@@ -7,8 +7,8 @@ DC = info.DCTAB;
 AC = info.ACTAB;
 
 % load hall_gray from hall.mat
-I = load('hall.mat');
-I = I.hall_gray;
+I = load('snow.mat');
+I = I.snow;
 
 % No.1
 % choosed_block_1 = I(1: 8, 1: 8);
@@ -96,22 +96,31 @@ I = I.hall_gray;
 % tmp = zig_zag_code(choosed_block_7);
 
 % No.8
-Z_q = quantify(I, Q);
-figure(1);
+% Z_q = quantify(I, Q);
+figure(8);
 subplot(2,1,1);
 imshow(I);
 title('before encode');
 set(gca, 'FontSize', 12);
 
 % No.9
-[DC_stream, AC_stream] = encode(Z_q, DC, AC);
-[I_H, I_W] = size(I);
-save('jpegcodes.mat', 'I_H', 'I_W', 'DC_stream', 'AC_stream');
+% [DC_stream, AC_stream] = encode(Z_q, DC, AC);
+% [I_H, I_W] = size(I);
+% save('jpegcodes.mat', 'I_H', 'I_W', 'DC_stream', 'AC_stream');
 
-% No.10
-I_recoverd = decode('jpegcodes.mat', Q, DC, AC);
+% No.11, No.12, No.13
+Q = round(Q / 2);
+I_recoverd = jpeg_transmission(I, Q, DC, AC);
 % I = reshape(I, 63,315);
 subplot(2,1,2);
 imshow(I_recoverd);
 title('after decode');
 set(gca, 'FontSize', 12);
+I_recoverd = jpeg_transmission(I, Q, DC, AC);
+imshow(I_recoverd);
+delta = I_recoverd - I;
+MSE = sum(sum(delta .* delta)) / (120 * 168);
+PSNR = 10 * log10(255 ^ 2 / MSE);
+disp(PSNR);
+
+
