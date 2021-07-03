@@ -31,8 +31,8 @@ function block_encrypt = block_encrypt_in_space(block, block_huff)
         for b = 1: 8
             point = block(a, b);
             point_code = block_huff((a-1) * 8 + b);
-            block_encrypt(a, b) = 2 * floor(point / 2) + point_code;
+            block_encrypt(a, b) = 2 * round(point / 2) + point_code;
         end
     end
-  
+    block_encrypt = uint8(block_encrypt);
 end

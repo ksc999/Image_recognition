@@ -3,7 +3,7 @@ function huff = decrypt_in_space(I)
     huff = zeros(1, H*W);
     index = 1;
     while index < length(huff)
-        k = floor(index / 64);
+        k = floor((index-1) / 64);
         W_range = W / 8;
         a = floor(k / W_range);
         b = mod(k, W_range);
