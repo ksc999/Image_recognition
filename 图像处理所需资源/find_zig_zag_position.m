@@ -19,5 +19,4 @@ function [x, y] = find_zig_zag_position(index)
     tmp = storage_index(index) - 1;
     x = floor(tmp / 8);
     y = mod(tmp, 8);
-    
 end
