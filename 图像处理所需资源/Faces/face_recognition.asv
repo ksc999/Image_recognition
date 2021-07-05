@@ -1,0 +1,35 @@
+STEP = 100;
+L = 4;
+I_tot = imread('test.bmp');
+% T = load('result.mat');
+% base_vector_4 = T.base_vector_4;
+% % imshow('test.bmp');
+% % h = images.roi.Polygon(gca,'Position',[20,20;100,100;200,200]);
+% [H, W, ~] = size(I_tot);
+% H_range = floor(H / STEP);
+% W_range = floor(W / STEP);
+% distance_matrix = zeros(H_range, W_range);
+% for a = 0 : H_range - 1
+%     for b = 0 : W_range - 1
+%         image_tmp = I_tot(a * STEP + 1 : (a+1) * STEP, b * STEP + 1 : (b+1) * STEP, :);
+%         distance = compute_distance(L, base_vector_4, image_tmp);
+%         distance_matrix(a + 1, b + 1) = distance;
+%     end
+% end
+T = load('result.mat');
+distance_matrix_4 = T.distance_matrix_4;
+imshow('test.bmp');
+position_matrix = zeros(2, 4);
+for a = 0 : H_range - 1
+    for b = 0 : W_range - 1
+        if distance_matrix_4(a + 1, b + 1) < 0.68
+            up = a * STEP + 1;
+            down = (a+1) * STEP;
+            left = b * STEP + 1;
+            right = (b+1) * STEP;
+            position_matrix = [left, up; right, up; right, down; left, down];
+            images.roi.Polygon(gca,'Position',position_matrix, 'FaceAlpha', 0, 'InteractionsAllowed', 'none');
+        end
+    end
+end
+
