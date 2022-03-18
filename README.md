@@ -1,3 +1,2 @@
-# Image-Recognition
-MATLAB course project 
+# MATLAB Course Project 
 ![图片](https://github.com/ksc999/Image_recognition/blob/master/image/hide_space_1.bmp)
